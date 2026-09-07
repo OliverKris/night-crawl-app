@@ -19,6 +19,7 @@ jobs:
           cache: npm
           cache-dependency-path: backend/package-lock.json
       - run: npm ci
+      - run: npx prisma generate
       - run: npx oxlint .
       - run: npx tsc --noEmit
 
@@ -36,6 +37,7 @@ jobs:
           cache: npm
           cache-dependency-path: backend/package-lock.json
       - run: npm ci
+      - run: npx prisma generate
       - run: npx vitest run --config vitest.config.ts
 
   e2e-tests:
@@ -70,5 +72,6 @@ jobs:
           cache: npm
           cache-dependency-path: backend/package-lock.json
       - run: npm ci
+      - run: npx prisma generate
       - run: npx prisma migrate deploy
       - run: npx vitest run --config vitest.config.e2e.ts
